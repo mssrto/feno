@@ -2,11 +2,8 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>🎀 فينو</title>
-
-<!-- أيقونة الموقع (دائرية) -->
+<title>feno فـينو</title>
 <link rel="icon" type="image/png" href="https://i.ibb.co/HL4cgYdX/profile.png">
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Foda+Free&display=swap');
 
@@ -21,17 +18,17 @@
     background-size: cover;
     background-attachment: fixed;
     background-color: #000;
-    color: #fff;
+    color: #ff69b4;
     direction: rtl;
   }
 
-  /* إزالة أي طبقة أو لون علوي */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: none;
+  /* Animation */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
+
+  body::before { content: ""; position: fixed; inset: 0; background: none; }
 
   .card {
     background: rgba(0,0,0,0.7);
@@ -43,69 +40,37 @@
     flex-direction: column;
     align-items: center;
     box-shadow: 0 0 20px rgba(255,105,180,0.2);
+    animation: fadeInUp 1s ease-out;
   }
 
-  .avatar-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 16px;
-  }
+  .avatar-container { position: relative; display: inline-block; margin-bottom: 16px; animation: fadeInUp 1.4s ease-out; }
 
   .avatar-container img {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    border: 4px solid #ff69b4;
-    object-fit: cover;
-    transition: transform 0.5s;
+    width: 128px; height: 128px; border-radius: 50%; border: 4px solid #ff69b4;
+    object-fit: cover; transition: transform 0.5s;
   }
 
-  .avatar-ring, .avatar-glow {
-    position: absolute;
-    border-radius: 50%;
+  .avatar-container img:hover { transform: scale(1.1); }
+
+  .avatar-ring { position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 10px 2px rgba(255,105,180,0.8); animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
   }
 
-  .avatar-ring {
-    inset: 0;
-    box-shadow: 0 0 10px 2px rgba(255,105,180,0.8);
-  }
+  .avatar-glow { position: absolute; inset: -6px; border-radius: 50%; background: rgba(255,105,180,0.3); filter: blur(20px); }
 
-  .avatar-glow {
-    inset: -6px;
-    background: rgba(255,105,180,0.3);
-    filter: blur(20px);
-  }
-
-  h1 {
-    margin: 8px 0;
-    font-size: 1.8rem;
-    color: #ff69b4;
-    text-shadow: 0 0 10px #ff69b4;
-    text-align: center;
-  }
-
-  p.subtitle {
-    margin: 0;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  p.subtitle img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-  }
+  h1 { margin: 8px 0; font-size: 1.8rem; color: #ff69b4; text-shadow: 0 0 10px #ff69b4; animation: fadeInUp 1.8s ease-out; }
 
   .social-column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
     margin-top: 16px;
     width: 100%;
+    animation: fadeInUp 2s ease-out;
   }
 
   .social-link {
@@ -115,67 +80,66 @@
     text-decoration: none;
     font-size: 1.1rem;
     transition: all 0.3s;
+    background: rgba(255,105,180,0.12);
+    padding: 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,105,180,0.3);
+    justify-content: center;
   }
 
-  .social-link span {
-    color: #fff;
-    text-shadow: 0 0 8px #ff69b4, 0 0 12px #ff69b4, 0 0 16px #ff1493;
-  }
+  .social-link img { width: 40px; height: 40px; transition: transform 0.3s, filter 0.3s; }
 
-  .social-link img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    transition: transform 0.3s, filter 0.3s;
-  }
+  .social-link:hover img { transform: scale(1.2); filter: drop-shadow(0 0 10px #ff69b4); }
 
-  .social-link:hover img {
-    transform: scale(1.2);
-    filter: drop-shadow(0 0 10px #ff69b4);
+  /* Twitch playlist box */
+  .twitch-box {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    width: 320px;
+    height: 180px;
+    background: rgba(0,0,0,0.6);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255,105,180,0.4);
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 1.2s ease-out;
   }
-
-  p.footer {
-    margin-top: 16px;
-    font-size: 0.75rem;
-    color: #fff;
-    text-align: center;
-  }
+  a { color: #ff69b4 !important; }
+  a:visited { color: #ff69b4 !important; }
 </style>
 </head>
 <body>
   <div class="card">
-    <!-- صورة البروفايل -->
     <div class="avatar-container">
       <img src="https://i.ibb.co/HL4cgYdX/profile.png" alt="profile">
       <div class="avatar-ring"></div>
       <div class="avatar-glow"></div>
     </div>
 
-    <!-- الاسم -->
-    <h1>فينو 🎀</h1>
-    <p class="subtitle"></p>
+    <h1>فينو feno</h1>
+    <p style="margin:0; font-size:1rem; color:#ff69b4;">سو فولو</p>
+    <img src="https://i.ibb.co/yn2WS3bh/IMG-0856.png" style="width:40px; margin-top:4px;"> 
 
-    <!-- روابط السوشال -->
     <div class="social-column">
-      <a href="https://www.twitch.tv/lfenoo" class="social-link">
-        <img src="https://i.ibb.co/6cC6vLjd/twitch.png" alt="Twitch">
-        <span>تويتش</span>
-      </a>
-      <a href="https://instagram.com/feno0ooo" class="social-link">
-        <img src="https://i.ibb.co/SDHK7H9W/instagram.png" alt="Instagram">
-        <span>انستا</span>
-      </a>
-      <a href="https://tiktok.com/@lfenoo" class="social-link">
-        <img src="https://i.ibb.co/chwRKWY5/tiktok.png" alt="TikTok">
-        <span>تيك توك</span>
-      </a>
+      <a href="https://www.twitch.tv/lfenoo" class="social-link"><img src="https://i.ibb.co/6cC6vLjd/twitch.png"><span>تويتش</span></a>
+      <a href="https://instagram.com/feno0ooo" class="social-link"><img src="https://i.ibb.co/SDHK7H9W/instagram.png"><span>انستا</span></a>
+      <a href="https://tiktok.com/@lfenoo" class="social-link"><img src="https://i.ibb.co/chwRKWY5/tiktok.png"><span>تيك توك</span></a>
       <a href="https://tip.dokan.sa/feno" class="social-link">
-        <img src="https://i.ibb.co/HDNFRfr3/dokan.png" alt="DOKAN">
-        <span>الدعم</span>
-      </a>
+        <img src="https://i.ibb.co/HDNFRfr3/dokan.png" alt="DOKAN" style="width:40px; height:40px; object-fit:contain;">
+        <img src="https://i.ibb.co/Qj6rXMZb/IMG-0855.png" style="width:28px; height:28px; object-fit:contain;">
+        <span>الدعم</span></a>
     </div>
 
-    <p class="footer">جميع الحقوق feno© </p>
+    <p class="footer">جميع الحقوق feno©</p>
+  </div>
+
+  <!-- Twitch small player -->
+  <div class="twitch-box">
+    <iframe
+      src="https://player.twitch.tv/?channel=lfenoo&parent=example.com"
+      height="100%" width="100%" allowfullscreen>
+    </iframe>
   </div>
 </body>
 </html>
