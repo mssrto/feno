@@ -42,14 +42,13 @@
     animation: fadeInUp 1s ease-out;
   }
 
-  .avatar-container { position: relative; display: inline-block; margin-bottom: 16px; animation: fadeInUp 1.4s ease-out; }
-  .avatar-container img { width: 128px; height: 128px; border-radius: 50%; border: 4px solid #ff69b4; object-fit: cover; transition: transform 0.5s; }
-  .avatar-container img:hover { transform: scale(1.1); }
-  .avatar-ring { position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 10px 2px rgba(255,105,180,0.8); animation: pulse 2s infinite; }
-  @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
-  .avatar-glow { position: absolute; inset: -6px; border-radius: 50%; background: rgba(255,105,180,0.3); filter: blur(20px); }
+  .avatar-container { position: relative; display: inline-block; margin-bottom: 16px; animation: float 3.5s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  .avatar-container img { width: 128px; height: 128px; border-radius: 50%; border: 4px solid #ff69b4; object-fit: cover; box-shadow: 0 0 25px rgba(255,105,180,0.6); }
 
   h1 { margin: 8px 0; font-size: 1.8rem; color: #ff69b4; text-shadow: 0 0 10px #ff69b4; animation: fadeInUp 1.8s ease-out; }
+
+  .subtitle { margin:0; font-size:1rem; color:#ff69b4; }
 
   .social-column {
     display: grid;
@@ -82,7 +81,7 @@
 
   p, span { color: #ff69b4; }
 
-  /* Twitch small player */
+  /* Twitch player في الزاوية مع رسالة احتياطية */
   .twitch-box {
     position: fixed;
     left: 20px;
@@ -93,21 +92,39 @@
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 0 15px rgba(255,105,180,0.4);
-    backdrop-filter: blur(10px);
-    animation: fadeInUp 1.2s ease-out;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff69b4;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .twitch-box iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 </style>
 </head>
 <body>
+
+  <!-- مربع البث -->
+  <div class="twitch-box">
+    <iframe src="https://player.twitch.tv/?channel=lfenoo&parent=yourdomain.com" allowfullscreen></iframe>
+    <noscript>قم برفع الصفحة على موقع حقيقي مع استبدال 'yourdomain.com' بالدومين الخاص بك لعرض البث.</noscript>
+  </div>
+
+  <!-- البطاقة -->
   <div class="card">
+
     <div class="avatar-container">
       <img src="https://i.ibb.co/HL4cgYdX/profile.png" alt="profile">
-      <div class="avatar-ring"></div>
-      <div class="avatar-glow"></div>
     </div>
 
     <h1>فينو 🎀</h1>
-    <p style="margin:0; font-size:1rem; color:#ff69b4;">سو فولو</p>
+    <p class="subtitle">سو فولو</p>
     <img src="https://i.ibb.co/yn2WS3bh/IMG-0856.png" style="width:40px; margin-top:4px;">
 
     <div class="social-column">
@@ -122,14 +139,8 @@
     </div>
 
     <p class="footer">جميع الحقوق feno©</p>
+
   </div>
 
-  <!-- Twitch small player -->
-  <div class="twitch-box">
-    <iframe
-      src="https://player.twitch.tv/?channel=lfenoo&parent=yourdomain.com"
-      height="100%" width="100%" allowfullscreen>
-    </iframe>
-  </div>
 </body>
 </html>
